@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Link Dump</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl7/1L_dstPt3HV5HzF6Gvk/e3s4Wz6iJgD/+ub2oU" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <main>
+    <h1>Link Dump</h1>
+    <a href="/add"><i class="fas fa-plus-square"></i> Add Link</a>
+    <ul>
+      {% for link in links %}
+        <li>
+          <time>{{ link.timestamp.strftime('%Y-%m-%d %H:%M') }}</time>
+          <a href="{{ link.url }}" target="_blank">{{ link.title }}</a>
+          {% if link.notes %}
+            <span>{{ link.notes }}</span>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </main>
+</body>
+</html>

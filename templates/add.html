@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Link</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl7/1L_dstPt3HV5HzF6Gvk/e3s4Wz6iJgD/+ub2oU" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <main>
+    <h1>Add Link</h1>
+    <form method="POST">
+      {{ form.csrf_token }}
+      <label for="url">URL:</label>
+      {{ form.url(size=50) }}
+      {% if form.url.errors %}
+        <ul>
+          {% for error in form.url.errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      <br>
+      <label for="notes">Notes:</label>
+      {{ form.notes(rows=3, cols=50) }}
+      {% if form.notes.errors %}
+        <ul>
+          {% for error in form.notes.errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      <br>
+      <button type="submit">Submit</button>
+    </form>
+  </main>
+</body>
+</html>
