@@ -34,7 +34,6 @@ def add():
     form = LinkForm()
     if form.validate_on_submit():
         url = form.url.data
-
         try:
             response = requests.get(url)
             soup = BeautifulSoup(response.text, 'html.parser')
@@ -42,7 +41,6 @@ def add():
         except Exception as e:
             title = 'Unable to fetch title'
             print(e)
-            
         link = Link(title=title, url=url, notes=form.notes.data)
         db.session.add(link)
         db.session.commit()
